@@ -15,42 +15,43 @@ export function LogoBrand({ light = false, size = 'sm' }: LogoBrandProps) {
       <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', userSelect: 'none' }}>
         {/* "The" */}
         <span style={{
-          fontFamily: 'var(--font-serif)',
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
           fontSize: '13px',
           fontStyle: 'italic',
-          letterSpacing: '10px',
+          letterSpacing: '8px',
           textTransform: 'lowercase',
           color: light ? 'rgba(255,255,255,0.55)' : 'rgba(42,33,24,0.5)',
           marginBottom: '-8px',
           fontWeight: 300,
+          opacity: 0.6,
         }}>
           The
         </span>
 
         {/* B + ig sur la même ligne */}
         <div style={{ display: 'flex', alignItems: 'flex-end', lineHeight: 1 }}>
-          {/* B géant */}
+          {/* B géant en Playfair Display */}
           <span style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(100px, 14vw, 180px)',
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontSize: 'clamp(110px, 15vw, 200px)',
             fontStyle: 'italic',
-            fontWeight: 300,
+            fontWeight: 800,
             color,
-            lineHeight: 0.82,
-            letterSpacing: '-4px',
+            lineHeight: 0.78,
+            letterSpacing: '0px',
           }}>
             B
           </span>
           {/* ig */}
           <span style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(34px, 5vw, 64px)',
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontSize: 'clamp(40px, 5.5vw, 72px)',
             fontStyle: 'italic',
-            fontWeight: 300,
+            fontWeight: 400,
             color,
             lineHeight: 1,
-            marginBottom: 'clamp(8px, 1.2vw, 18px)',
-            letterSpacing: '2px',
+            marginBottom: '12px',
+            letterSpacing: '0px',
           }}>
             ig
           </span>
@@ -58,11 +59,11 @@ export function LogoBrand({ light = false, size = 'sm' }: LogoBrandProps) {
 
         {/* Day */}
         <span style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: 'clamp(18px, 3vw, 36px)',
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontSize: 'clamp(20px, 3vw, 40px)',
           fontStyle: 'italic',
           fontWeight: 300,
-          letterSpacing: 'clamp(8px, 2vw, 20px)',
+          letterSpacing: '12px',
           color: goldColor,
           marginTop: '-8px',
           textTransform: 'lowercase',
@@ -78,7 +79,7 @@ export function LogoBrand({ light = false, size = 'sm' }: LogoBrandProps) {
     <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', userSelect: 'none', lineHeight: 1 }}>
       {/* "The" */}
       <span style={{
-        fontFamily: 'var(--font-serif)',
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
         fontSize: '9px',
         fontStyle: 'italic',
         letterSpacing: '5px',
@@ -92,24 +93,24 @@ export function LogoBrand({ light = false, size = 'sm' }: LogoBrandProps) {
       {/* B + ig */}
       <div style={{ display: 'flex', alignItems: 'flex-end' }}>
         <span style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: '52px',
+          fontFamily: "'Playfair Display', Georgia, serif",
+          fontSize: '56px',
           fontStyle: 'italic',
-          fontWeight: 300,
+          fontWeight: 800,
           color,
           lineHeight: 0.82,
-          letterSpacing: '-1px',
+          letterSpacing: '0px',
         }}>
           B
         </span>
         <span style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: '18px',
+          fontFamily: "'Cormorant Garamond', Georgia, serif",
+          fontSize: '20px',
           fontStyle: 'italic',
-          fontWeight: 300,
+          fontWeight: 400,
           color,
-          marginBottom: '3px',
-          letterSpacing: '1px',
+          marginBottom: '4px',
+          letterSpacing: '0px',
         }}>
           ig
         </span>
@@ -117,11 +118,11 @@ export function LogoBrand({ light = false, size = 'sm' }: LogoBrandProps) {
 
       {/* Day */}
       <span style={{
-        fontFamily: 'var(--font-serif)',
-        fontSize: '10px',
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
+        fontSize: '11px',
         fontStyle: 'italic',
         fontWeight: 300,
-        letterSpacing: '6px',
+        letterSpacing: '5px',
         color: goldColor,
         marginTop: '-6px',
         textTransform: 'lowercase',
