@@ -1,5 +1,5 @@
-import { type NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  return response
+  return NextResponse.next()
 }
