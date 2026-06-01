@@ -1,6 +1,8 @@
 import { Navigation } from '@/components/Navigation'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { FAQ } from '@/components/FAQ'
+import { LogoBrand } from '@/components/LogoBrand'
+import { TheGatheringSection } from '@/components/TheGatheringSection'
 import { createClient } from '@/lib/supabase/server'
 
 // Photos Unsplash — Corse & mariage (libres de droits)
@@ -16,14 +18,7 @@ const galleryImages = [
   { src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80&auto=format', alt: 'Réception' },
 ]
 
-const gatheringCategories = [
-  { title: 'Demandes en mariage', desc: 'Un moment suspendu dans le temps, orchestré avec une précision romantique.', img: 'https://images.unsplash.com/photo-1518049362265-d5b2a6467637?w=600&q=80&auto=format', icon: '💍' },
-  { title: 'Dîners privés', desc: 'Gastronomie d\'exception dans des cadres intimistes et exclusifs.', img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format', icon: '🍽️' },
-  { title: 'Anniversaires', desc: 'Des célébrations mémorables à la hauteur de vos années.', img: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&q=80&auto=format', icon: '✨' },
-  { title: 'Baptêmes', desc: 'Un premier chapitre célébré avec élégance et tendresse.', img: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&q=80&auto=format', icon: '🌿' },
-  { title: 'Séminaires', desc: 'Des événements professionnels qui inspirent et marquent les esprits.', img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80&auto=format', icon: '🎯' },
-  { title: 'Événements sur mesure', desc: 'Votre vision, sans limites. Nous réalisons l\'extraordinaire.', img: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80&auto=format', icon: '⭐' },
-]
+
 
 export default async function Home() {
   const supabase = await createClient()
@@ -64,18 +59,10 @@ export default async function Home() {
             Île de Beauté · Corse
           </p>
 
-          {/* Logo / Title */}
-          <h1 style={{
-            fontSize: 'clamp(52px, 8vw, 96px)',
-            fontWeight: 300,
-            letterSpacing: '8px',
-            textTransform: 'uppercase',
-            color: 'white',
-            marginBottom: '12px',
-            fontFamily: 'var(--font-serif)',
-          }}>
-            The Big Day
-          </h1>
+          {/* Logo typographique */}
+          <div style={{ marginBottom: '4px' }}>
+            <LogoBrand light size="lg" />
+          </div>
 
           <div className="divider" style={{ background: 'rgba(201,169,110,0.7)', margin: '20px auto 28px' }} />
 
@@ -230,50 +217,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ===================== THE GATHERING ===================== */}
-      <section id="the-gathering" className="section" style={{ background: 'var(--color-cream)' }}>
-        <div className="container">
-          <ScrollReveal>
-            <div style={{ textAlign: 'center', marginBottom: '72px' }}>
-              <p style={{ fontSize: '10px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '20px' }}>
-                Événements privés
-              </p>
-              <h2 style={{ fontSize: 'clamp(36px, 4vw, 56px)', fontWeight: 300, marginBottom: '16px' }}>
-                The Gathering
-              </h2>
-              <p style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '20px', color: 'rgba(42,33,24,0.5)', marginBottom: '24px' }}>
-                Les moments qui comptent vraiment
-              </p>
-              <div className="divider" />
-              <p style={{ fontSize: '15px', color: 'rgba(42,33,24,0.65)', maxWidth: '560px', margin: '24px auto 0', lineHeight: 1.9, fontWeight: 300 }}>
-                Pour ceux qui cherchent l'authenticité et l'intimité. Des célébrations où chaque invité se sent privilégié.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          {/* Grid categories */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-            {gatheringCategories.map((cat, i) => (
-              <ScrollReveal key={i} delay={i * 80}>
-                <div className="service-card" style={{ background: 'white', cursor: 'pointer' }}>
-                  <div style={{ height: '200px', overflow: 'hidden', marginBottom: '24px', marginLeft: '-40px', marginRight: '-40px', marginTop: '-48px' }}>
-                    <img src={cat.img} alt={cat.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease' }} />
-                  </div>
-                  <div style={{ fontSize: '24px', marginBottom: '12px' }}>{cat.icon}</div>
-                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 400, marginBottom: '12px' }}>{cat.title}</h3>
-                  <p style={{ fontSize: '13px', color: 'rgba(42,33,24,0.6)', lineHeight: 1.8, fontWeight: 300 }}>{cat.desc}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          <ScrollReveal>
-            <div style={{ textAlign: 'center', marginTop: '56px' }}>
-              <a href="#contact" className="btn btn-dark">Organiser mon événement</a>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <TheGatheringSection />
 
       {/* ===================== GALERIE ===================== */}
       <section id="galerie" className="section" style={{ background: 'var(--color-dark)' }}>
