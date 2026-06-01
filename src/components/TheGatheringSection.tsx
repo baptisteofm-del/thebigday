@@ -6,11 +6,11 @@ import { ScrollReveal } from './ScrollReveal'
 const categories = [
   {
     id: 'proposals',
-    label: 'PROPOSALS',
-    subtitle: 'Custom engagement experiences',
+    label: 'Proposals',
+    subtitle: 'Expériences de demande en mariage personnalisées',
     image: 'https://images.unsplash.com/photo-1518049362265-d5b2a6467637?w=900&q=80&auto=format',
     panelImage: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80&auto=format',
-    intro: 'Every proposal deserves a setting as extraordinary as the moment itself. We design each experience with meticulous attention to detail, ensuring your question is answered in the most memorable way possible.',
+    intro: 'Chaque demande en mariage mérite un cadre aussi extraordinaire que le moment lui-même. Nous concevons chaque expérience avec une attention méticuleuse aux détails, pour que votre question reste gravée à jamais dans les mémoires.',
     services: [
       'Organisation complète',
       'Décoration personnalisée',
@@ -23,11 +23,11 @@ const categories = [
   },
   {
     id: 'honeymoon',
-    label: 'HONEYMOON',
-    subtitle: 'Romantic escapes',
+    label: 'Honeymoon',
+    subtitle: 'Échappées romantiques',
     image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=900&q=80&auto=format',
     panelImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80&auto=format',
-    intro: 'Your honeymoon is the first chapter of your life together. We craft intimate, romantic experiences tailored to your desires — from private dinners overlooking the sea to exclusive discoveries of Corsica\'s most breathtaking landscapes.',
+    intro: 'Votre lune de miel est le premier chapitre de votre vie commune. Nous créons des expériences intimes et romantiques, pensées sur mesure — des dîners privés face à la mer aux découvertes exclusives des plus beaux paysages de Corse.',
     services: [
       'Moments romantiques',
       'Dîners privés',
@@ -39,17 +39,17 @@ const categories = [
   },
   {
     id: 'events',
-    label: 'EVENTS',
-    subtitle: 'Celebrations & gatherings',
+    label: 'Events',
+    subtitle: 'Célébrations & rassemblements',
     image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=900&q=80&auto=format',
-    intro: 'From intimate family celebrations to prestigious corporate gatherings, we design events that leave lasting impressions. Every detail is curated with the same passion and precision that defines The Gathering.',
+    intro: 'Des célébrations familiales intimistes aux grands événements d\'entreprise, nous orchestrons des moments qui marquent les esprits. Chaque détail est pensé avec la même passion et la même précision qui définissent The Gathering.',
     eventSubcategories: [
-      { title: 'Birthdays', desc: 'Celebrate life\'s milestones in extraordinary style' },
-      { title: 'Baptisms', desc: 'A timeless first chapter, celebrated with grace' },
-      { title: 'Communions', desc: 'A sacred milestone honoured with elegance' },
-      { title: 'Baby Showers', desc: 'Welcome new life with warmth and refinement' },
-      { title: 'Corporate Events', desc: 'Inspire and impress with exceptional hospitality' },
-      { title: 'Bespoke Events', desc: 'Your vision, without limits' },
+      { title: 'Anniversaires', desc: 'Célébrez les grands moments de la vie avec un raffinement absolu' },
+      { title: 'Baptêmes', desc: 'Un premier chapitre éternel, célébré avec grâce' },
+      { title: 'Communions', desc: 'Une étape sacrée honorée avec élégance' },
+      { title: 'Baby Showers', desc: 'Accueillez la vie nouvelle avec chaleur et raffinement' },
+      { title: 'Événements Corporate', desc: 'Inspirez et impressionnez avec une hospitalité d\'exception' },
+      { title: 'Événements sur Mesure', desc: 'Votre vision, sans limites' },
     ],
   },
 ]
@@ -83,42 +83,112 @@ export function TheGatheringSection() {
           </div>
         </ScrollReveal>
 
-        {/* Ticker Animé (Marquee) */}
+        {/* Bandeau Coastal Experience avec Vidéo */}
         <ScrollReveal>
-          <div style={{ marginBottom: '60px', background: 'var(--color-dark)' }}>
-            <div style={{ fontSize: '9px', letterSpacing: '5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', padding: '12px 48px', background: 'var(--color-dark)', borderBottom: '1px solid rgba(201,169,110,0.2)' }}>
-              SIGNATURE EXPERIENCE
-            </div>
-            <div style={{ 
-              overflow: 'hidden', 
-              background: 'var(--color-dark)',
-              padding: '24px 0',
+          <div style={{
+            marginBottom: '60px',
+            position: 'relative',
+            height: '420px',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            {/* Vidéo en arrière-plan */}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            >
+              <source src="https://videos.pexels.com/video-files/4782135/4782135-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+            </video>
+
+            {/* Overlay sombre */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(15, 10, 5, 0.45)',
+              zIndex: 1,
+            }} />
+
+            {/* Contenu centré */}
+            <div style={{
+              position: 'relative',
+              zIndex: 2,
+              textAlign: 'center',
+              color: 'white',
+              maxWidth: '600px',
             }}>
-              <div style={{
-                display: 'flex',
-                whiteSpace: 'nowrap',
-                animation: 'scroll 20s linear infinite',
+              <p style={{
+                fontSize: '9px',
+                letterSpacing: '6px',
+                textTransform: 'uppercase',
+                color: 'var(--color-gold)',
+                marginBottom: '20px',
+                fontWeight: 400,
               }}>
-                {[0, 1, 2].map((i) => (
-                  <div key={i} style={{
-                    fontFamily: "'Cormorant Garamond', Georgia, serif",
-                    fontSize: '14px',
-                    fontStyle: 'italic',
-                    letterSpacing: '4px',
-                    color: 'var(--color-gold)',
-                    flexShrink: 0,
-                    paddingRight: '80px',
-                  }}>
-                    THE COASTAL EXPERIENCE  ✦
-                  </div>
-                ))}
-              </div>
-              <style>{`
-                @keyframes scroll {
-                  0% { transform: translateX(0); }
-                  100% { transform: translateX(-33.333%); }
-                }
-              `}</style>
+                NOUVEAUTÉ
+              </p>
+              <h2 style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontSize: 'clamp(32px, 5vw, 56px)',
+                fontWeight: 300,
+                fontStyle: 'italic',
+                letterSpacing: '6px',
+                marginBottom: '20px',
+                textTransform: 'uppercase',
+              }}>
+                THE COASTAL EXPERIENCE
+              </h2>
+              <div style={{
+                width: '40px',
+                height: '1px',
+                background: 'var(--color-gold)',
+                margin: '20px auto',
+              }} />
+              <p style={{
+                fontSize: '15px',
+                color: 'rgba(255, 255, 255, 0.75)',
+                fontStyle: 'italic',
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                maxWidth: '500px',
+                margin: '0 auto 32px',
+                lineHeight: 1.6,
+              }}>
+                Notre expérience signature pour sublimer tous vos événements.
+              </p>
+              <button
+                onClick={() => setCoastalOpen(true)}
+                style={{
+                  border: '1px solid rgba(255, 255, 255, 0.8)',
+                  background: 'transparent',
+                  color: 'white',
+                  padding: '10px 32px',
+                  fontSize: '11px',
+                  letterSpacing: '3px',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'white';
+                  e.currentTarget.style.color = 'var(--color-dark)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.color = 'white';
+                }}
+              >
+                Découvrir
+              </button>
             </div>
           </div>
         </ScrollReveal>
@@ -165,9 +235,11 @@ export function TheGatheringSection() {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  padding: '40px 36px',
+                  padding: '40px 36px 100px 36px',
                   color: 'white',
                   zIndex: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
                 }}>
                   <p style={{
                     fontSize: '9px',
@@ -198,6 +270,36 @@ export function TheGatheringSection() {
                   }}>
                     {cat.subtitle}
                   </p>
+                  {/* Bouton Découvrir */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActivePanel(activePanel === cat.id ? null : cat.id);
+                    }}
+                    style={{
+                      marginTop: '24px',
+                      border: '1px solid rgba(255, 255, 255, 0.6)',
+                      background: 'transparent',
+                      color: 'white',
+                      padding: '10px 32px',
+                      fontSize: '11px',
+                      letterSpacing: '3px',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      alignSelf: 'flex-start',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'white';
+                      e.currentTarget.style.color = 'var(--color-dark)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'transparent';
+                      e.currentTarget.style.color = 'white';
+                    }}
+                  >
+                    Découvrir
+                  </button>
                 </div>
 
                 {/* Hover indicator */}
@@ -250,7 +352,7 @@ export function TheGatheringSection() {
               {/* Text Content */}
               <div style={{ padding: '56px 48px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <p style={{ fontSize: '9px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '20px' }}>
-                  OUR SIGNATURE EXPERIENCE
+                  EXPÉRIENCE SIGNATURE
                 </p>
                 <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '36px', fontStyle: 'italic', fontWeight: 300, letterSpacing: '2px', marginBottom: '24px' }}>
                   {activeCategory!.label}
@@ -291,7 +393,7 @@ export function TheGatheringSection() {
                   <span style={{ color: 'var(--color-gold)', fontSize: '14px' }}>✦</span>
                   <div>
                     <p style={{ fontSize: '9px', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '2px', fontWeight: 400 }}>
-                      SIGNATURE EXPERIENCE
+                      EXPÉRIENCE SIGNATURE
                     </p>
                     <p style={{ fontSize: '13px', color: 'white', fontFamily: "'Cormorant Garamond', Georgia, serif", letterSpacing: '1px', fontWeight: 300 }}>
                       + The Coastal Experience
@@ -300,7 +402,7 @@ export function TheGatheringSection() {
                 </div>
 
                 <a href="#contact" className="btn btn-dark" onClick={(e) => e.stopPropagation()}>
-                  Contact Us
+                  Nous contacter
                 </a>
               </div>
               <style>{`@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}`}</style>
@@ -323,7 +425,7 @@ export function TheGatheringSection() {
               {/* Text Content (left) */}
               <div style={{ padding: '56px 48px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <p style={{ fontSize: '9px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '20px' }}>
-                  OUR SIGNATURE EXPERIENCE
+                  EXPÉRIENCE SIGNATURE
                 </p>
                 <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '36px', fontStyle: 'italic', fontWeight: 300, letterSpacing: '2px', marginBottom: '24px' }}>
                   {activeCategory!.label}
@@ -364,7 +466,7 @@ export function TheGatheringSection() {
                   <span style={{ color: 'var(--color-gold)', fontSize: '14px' }}>✦</span>
                   <div>
                     <p style={{ fontSize: '9px', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '2px', fontWeight: 400 }}>
-                      SIGNATURE EXPERIENCE
+                      EXPÉRIENCE SIGNATURE
                     </p>
                     <p style={{ fontSize: '13px', color: 'white', fontFamily: "'Cormorant Garamond', Georgia, serif", letterSpacing: '1px', fontWeight: 300 }}>
                       + The Coastal Experience
@@ -373,7 +475,7 @@ export function TheGatheringSection() {
                 </div>
 
                 <a href="#contact" className="btn btn-dark" onClick={(e) => e.stopPropagation()}>
-                  Contact Us
+                  Nous contacter
                 </a>
               </div>
 
@@ -451,7 +553,7 @@ export function TheGatheringSection() {
               onClick={(e) => { e.stopPropagation(); setCoastalOpen(true) }}>
                 <div>
                   <p style={{ fontSize: '9px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '6px', fontWeight: 400 }}>
-                    SIGNATURE EXPERIENCE
+                    EXPÉRIENCE SIGNATURE
                   </p>
                   <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '22px', fontStyle: 'italic', fontWeight: 300, letterSpacing: '2px' }}>
                     The Coastal Experience
@@ -466,7 +568,7 @@ export function TheGatheringSection() {
                   textTransform: 'uppercase',
                   color: 'var(--color-gold)',
                 }}>
-                  <span>Discover</span>
+                  <span>Découvrir</span>
                   <span style={{ fontSize: '18px' }}>↓</span>
                 </div>
               </div>
@@ -500,7 +602,7 @@ export function TheGatheringSection() {
               {/* Text */}
               <div style={{ padding: '56px 48px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <p style={{ fontSize: '9px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '20px', fontWeight: 400 }}>
-                  OUR SIGNATURE EXPERIENCE
+                  EXPÉRIENCE SIGNATURE
                 </p>
                 <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '40px', fontStyle: 'italic', fontWeight: 300, letterSpacing: '2px', marginBottom: '24px' }}>
                   The Coastal<br />Experience
@@ -517,7 +619,7 @@ export function TheGatheringSection() {
                 </p>
 
                 <a href="#contact" className="btn btn-dark" onClick={(e) => { e.stopPropagation(); setCoastalOpen(false) }}>
-                  Plan your Coastal Experience
+                  Planifier mon expérience
                 </a>
               </div>
               <style>{`@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}`}</style>
