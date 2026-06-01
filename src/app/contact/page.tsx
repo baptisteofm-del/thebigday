@@ -1,7 +1,8 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
 import toast from 'react-hot-toast'
 
 export default function ContactPage() {
@@ -14,8 +15,6 @@ export default function ContactPage() {
     message: '',
   })
 
-  const supabase = createClient()
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
@@ -26,163 +25,130 @@ export default function ContactPage() {
     setLoading(true)
 
     try {
-      // Get agency ID
+      const { createClient } = await import('@/lib/supabase/client')
+      const supabase = createClient()
+
       const { data: agency } = await supabase
         .from('agencies')
         .select('id')
         .eq('slug', 'thebigday')
         .single()
 
-      if (!agency) {
-        toast.error('Erreur lors de l\'envoi du message')
-        return
-      }
+      if (!agency) throw new Error('Agency not found')
 
-      // Insert booking
       const { error } = await supabase
         .from('bookings')
         .insert({
           agency_id: agency.id,
           name: formData.name,
           email: formData.email,
-          event_date: formData.date,
+          event_date: formData.date || null,
           message: formData.message,
         })
 
       if (error) throw error
 
-      toast.success('Merci! Nous vous répondrons très bientôt.')
+      toast.success('Merci ! Nous vous répondrons très bientôt.')
       setFormData({ name: '', email: '', eventType: '', date: '', message: '' })
-    } catch (error) {
-      console.error(error)
-      toast.error('Erreur lors de l\'envoi du message')
+    } catch (err) {
+      console.error(err)
+      toast.error('Une erreur est survenue. Veuillez réessayer.')
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <main>
-      {/* Hero Section */}
-      <section className="section bg-gradient-to-br from-sand to-ivory pt-32">
+    <main className="pt-24">
+      <section className="section" style={{ background: 'var(--color-ivory)' }}>
         <div className="container-max text-center">
-          <h1 className="font-serif font-bold mb-6">Contactez-nous</h1>
-          <p className="text-xl text-dark/70">
-            Parlons de votre projet et créons ensemble quelque chose d'extraordinaire
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '3rem', marginBottom: '1rem' }}>
+            Contactez-nous
+          </h1>
+          <p style={{ color: 'var(--color-dark)', opacity: 0.7, fontSize: '1.2rem' }}>
+            Parlons de votre projet et créons quelque chose d'extraordinaire
           </p>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="section bg-cream">
+      <section className="section" style={{ background: 'var(--color-cream)' }}>
         <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Form */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px' }}>
+
+            {/* Formulaire */}
             <div>
-              <h2 className="font-serif font-bold mb-8">Formulaire de contact</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', marginBottom: '2rem' }}>
+                Planifier mon projet
+              </h2>
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
                 <div>
-                  <label className="block font-serif text-sm font-semibold mb-2">Nom *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-dark/20 rounded focus:outline-none focus:border-gold"
-                    placeholder="Votre nom"
-                  />
+                  <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', fontSize: '14px' }}>Nom *</label>
+                  <input type="text" name="name" required value={formData.name} onChange={handleChange}
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid rgba(61,51,42,0.2)', borderRadius: '4px', fontSize: '16px', background: 'white' }}
+                    placeholder="Votre nom" />
                 </div>
 
                 <div>
-                  <label className="block font-serif text-sm font-semibold mb-2">Email *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-dark/20 rounded focus:outline-none focus:border-gold"
-                    placeholder="votre@email.com"
-                  />
+                  <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', fontSize: '14px' }}>Email *</label>
+                  <input type="email" name="email" required value={formData.email} onChange={handleChange}
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid rgba(61,51,42,0.2)', borderRadius: '4px', fontSize: '16px', background: 'white' }}
+                    placeholder="votre@email.com" />
                 </div>
 
                 <div>
-                  <label className="block font-serif text-sm font-semibold mb-2">Type d'événement</label>
-                  <select
-                    name="eventType"
-                    value={formData.eventType}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-dark/20 rounded focus:outline-none focus:border-gold"
-                  >
+                  <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', fontSize: '14px' }}>Type d'événement</label>
+                  <select name="eventType" value={formData.eventType} onChange={handleChange}
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid rgba(61,51,42,0.2)', borderRadius: '4px', fontSize: '16px', background: 'white' }}>
                     <option value="">Sélectionner...</option>
-                    <option value="mariage">Mariage</option>
-                    <option value="gathering">The Gathering</option>
-                    <option value="autre">Autre</option>
+                    <option value="mariage">Mariage — The Big Day</option>
+                    <option value="demande">Demande en mariage</option>
+                    <option value="diner">Dîner privé</option>
+                    <option value="anniversaire">Anniversaire</option>
+                    <option value="bapteme">Baptême</option>
+                    <option value="seminaire">Séminaire</option>
+                    <option value="custom">Événement sur mesure</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block font-serif text-sm font-semibold mb-2">Date estimée</label>
-                  <input
-                    type="date"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-dark/20 rounded focus:outline-none focus:border-gold"
-                  />
+                  <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', fontSize: '14px' }}>Date estimée</label>
+                  <input type="date" name="date" value={formData.date} onChange={handleChange}
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid rgba(61,51,42,0.2)', borderRadius: '4px', fontSize: '16px', background: 'white' }} />
                 </div>
 
                 <div>
-                  <label className="block font-serif text-sm font-semibold mb-2">Message *</label>
-                  <textarea
-                    name="message"
-                    required
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-dark/20 rounded focus:outline-none focus:border-gold"
-                    placeholder="Parlez-nous de votre projet..."
-                  />
+                  <label style={{ display: 'block', fontWeight: 600, marginBottom: '8px', fontSize: '14px' }}>Message *</label>
+                  <textarea name="message" required rows={5} value={formData.message} onChange={handleChange}
+                    style={{ width: '100%', padding: '12px 16px', border: '1px solid rgba(61,51,42,0.2)', borderRadius: '4px', fontSize: '16px', background: 'white', resize: 'vertical' }}
+                    placeholder="Parlez-nous de votre projet..." />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="btn btn-primary w-full disabled:opacity-50"
-                >
-                  {loading ? 'Envoi...' : 'Planifier mon projet'}
+                <button type="submit" disabled={loading} className="btn btn-primary"
+                  style={{ opacity: loading ? 0.6 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
+                  {loading ? 'Envoi en cours...' : 'Planifier mon projet'}
                 </button>
               </form>
             </div>
 
-            {/* Info */}
-            <div>
-              <h2 className="font-serif font-bold mb-8">Nous vous répondrons rapidement</h2>
-              
-              <div className="space-y-8">
-                <div>
-                  <h3 className="font-serif text-lg font-semibold mb-2">Email</h3>
-                  <a href="mailto:contact@thebigday.fr" className="text-gold hover:text-dark transition">
-                    contact@thebigday.fr
-                  </a>
-                </div>
-
-                <div>
-                  <h3 className="font-serif text-lg font-semibold mb-2">Localisation</h3>
-                  <p className="text-dark/70">
-                    Corse, France<br />
-                    Basée au cœur de l'île de Beauté
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-serif text-lg font-semibold mb-2">Suivez-nous</h3>
-                  <div className="flex gap-4 text-2xl">
-                    <a href="#" className="hover:text-gold transition">📸</a>
-                    <a href="#" className="hover:text-gold transition">👥</a>
-                    <a href="#" className="hover:text-gold transition">📌</a>
-                  </div>
+            {/* Infos */}
+            <div style={{ paddingTop: '80px' }}>
+              <div style={{ marginBottom: '40px' }}>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', marginBottom: '8px' }}>Email</h3>
+                <a href="mailto:contact@thebigday.fr" style={{ color: 'var(--color-gold)', fontSize: '1.1rem' }}>
+                  contact@thebigday.fr
+                </a>
+              </div>
+              <div style={{ marginBottom: '40px' }}>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', marginBottom: '8px' }}>Localisation</h3>
+                <p style={{ color: 'rgba(61,51,42,0.7)' }}>Corse, France<br />Île de Beauté</p>
+              </div>
+              <div>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', marginBottom: '12px' }}>Suivez-nous</h3>
+                <div style={{ display: 'flex', gap: '16px', fontSize: '28px' }}>
+                  <a href="#">📸</a>
+                  <a href="#">👥</a>
+                  <a href="#">📌</a>
                 </div>
               </div>
             </div>
