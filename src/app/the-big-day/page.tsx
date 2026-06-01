@@ -8,19 +8,19 @@ export const metadata = {
 export default async function TheBigDayPage() {
   const supabase = await createClient()
 
-  const { data: events } = await supabase
+  const { data: eventType } = await supabase
+    .from('event_types')
+    .select('id')
+    .eq('slug', 'mariage')
+    .single()
+
+  const { data: events } = eventType ? await supabase
     .from('events')
     .select('*')
-    .eq('event_type_id', (await supabase
-      .from('event_types')
-      .select('id')
-      .eq('slug', 'mariage')
-      .single()
-      .then(r => r.data?.id)))
+    .eq('event_type_id', eventType.id)
     .eq('status', 'published')
     .order('date', { ascending: false })
-    .limit(6)
-    .catch(() => ({ data: [] }))
+    .limit(6) : { data: [] }
 
   return (
     <main>

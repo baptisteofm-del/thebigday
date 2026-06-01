@@ -13,7 +13,6 @@ export default async function TheGatheringPage() {
     .select('*')
     .neq('slug', 'mariage')
     .order('created_at')
-    .catch(() => ({ data: [] }))
 
   return (
     <main>

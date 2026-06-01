@@ -13,7 +13,6 @@ export default async function GaleriePage() {
     .select('*')
     .eq('published', true)
     .order('position')
-    .catch(() => ({ data: [] }))
 
   return (
     <main>
