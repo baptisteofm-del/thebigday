@@ -3,7 +3,6 @@ import { ScrollReveal } from '@/components/ScrollReveal'
 import { FAQ } from '@/components/FAQ'
 import { LogoBrand } from '@/components/LogoBrand'
 import { TheGatheringSection } from '@/components/TheGatheringSection'
-import { CoastalExperienceSection } from '@/components/CoastalExperienceSection'
 import { createClient } from '@/lib/supabase/server'
 
 // Photos Unsplash — Corse & mariage (libres de droits)
@@ -219,8 +218,6 @@ export default async function Home() {
       </section>
 
       <TheGatheringSection />
-
-      <CoastalExperienceSection />
 
       {/* ===================== GALERIE ===================== */}
       <section id="galerie" className="section" style={{ background: 'var(--color-dark)' }}>

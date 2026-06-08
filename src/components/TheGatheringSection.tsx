@@ -83,117 +83,185 @@ export function TheGatheringSection() {
           </div>
         </ScrollReveal>
 
-        {/* Bandeau Coastal Experience avec Vidéo */}
+        {/* ── Bandeau Coastal Experience ── */}
         <ScrollReveal>
           <div style={{
             marginBottom: '60px',
             position: 'relative',
-            height: '420px',
+            height: '520px',
             overflow: 'hidden',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-          }}>
-            {/* Vidéo en arrière-plan */}
+            cursor: 'pointer',
+          }}
+          onClick={() => window.location.href = '#contact'}
+          >
+            {/* Vidéo — zoom lent au hover */}
             <video
-              autoPlay
-              muted
-              loop
-              playsInline
+              autoPlay muted loop playsInline
               style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
+                position: 'absolute', inset: 0,
+                width: '100%', height: '100%',
                 objectFit: 'cover',
+                transform: 'scale(1.06)',
+                transition: 'transform 8s ease',
               }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = 'scale(1.12)'}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = 'scale(1.06)'}
             >
               <source src="https://videos.pexels.com/video-files/4782135/4782135-uhd_2560_1440_30fps.mp4" type="video/mp4" />
             </video>
 
-            {/* Overlay sombre */}
+            {/* Overlay gradient */}
             <div style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'rgba(15, 10, 5, 0.45)',
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(to bottom, rgba(10,8,5,0.25) 0%, rgba(10,8,5,0.55) 60%, rgba(10,8,5,0.75) 100%)',
               zIndex: 1,
             }} />
 
-            {/* Contenu centré */}
+            {/* Contenu principal */}
             <div style={{
-              position: 'relative',
-              zIndex: 2,
-              textAlign: 'center',
-              color: 'white',
-              maxWidth: '600px',
+              position: 'relative', zIndex: 2,
+              textAlign: 'center', color: 'white',
+              padding: '0 24px',
             }}>
+              {/* Eyebrow animé */}
               <p style={{
-                fontSize: '9px',
-                letterSpacing: '6px',
+                fontSize: '9px', letterSpacing: '7px',
                 textTransform: 'uppercase',
                 color: 'var(--color-gold)',
-                marginBottom: '20px',
-                fontWeight: 400,
+                marginBottom: '18px', fontWeight: 400,
+                animation: 'fadeUp 0.8s ease both',
               }}>
-                NOUVEAUTÉ
+                Expérience Signature
               </p>
+
+              {/* Titre */}
               <h2 style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontSize: 'clamp(32px, 5vw, 56px)',
+                fontSize: 'clamp(36px, 5.5vw, 72px)',
                 fontWeight: 300,
                 fontStyle: 'italic',
                 letterSpacing: '6px',
-                marginBottom: '20px',
                 textTransform: 'uppercase',
+                lineHeight: 1.05,
+                marginBottom: '0',
+                animation: 'fadeUp 0.8s 0.1s ease both',
               }}>
-                THE COASTAL EXPERIENCE
+                Signature :
               </h2>
-              <div style={{
-                width: '40px',
-                height: '1px',
-                background: 'var(--color-gold)',
-                margin: '20px auto',
-              }} />
-              <p style={{
-                fontSize: '15px',
-                color: 'rgba(255, 255, 255, 0.75)',
-                fontStyle: 'italic',
+              <h2 style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
-                maxWidth: '500px',
-                margin: '0 auto 32px',
-                lineHeight: 1.6,
+                fontSize: 'clamp(36px, 5.5vw, 72px)',
+                fontWeight: 700,
+                fontStyle: 'italic',
+                letterSpacing: '6px',
+                textTransform: 'uppercase',
+                lineHeight: 1.05,
+                marginBottom: '24px',
+                animation: 'fadeUp 0.8s 0.2s ease both',
               }}>
-                Notre expérience signature pour sublimer tous vos événements.
+                Coastal Experience
+              </h2>
+
+              {/* Divider */}
+              <div style={{ width: '40px', height: '1px', background: 'var(--color-gold)', margin: '0 auto 24px', animation: 'fadeUp 0.8s 0.3s ease both' }} />
+
+              {/* Sous-titre */}
+              <p style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontSize: 'clamp(16px, 2vw, 22px)',
+                fontStyle: 'italic',
+                color: 'rgba(255,255,255,0.82)',
+                marginBottom: '36px',
+                lineHeight: 1.5,
+                animation: 'fadeUp 0.8s 0.35s ease both',
+              }}>
+                Transformez votre événement en une expérience inoubliable.
               </p>
+
+              {/* CTA */}
               <a
-                href="#coastal-experience"
+                href="#contact"
+                onClick={e => e.stopPropagation()}
+                className="btn"
                 style={{
-                  display: 'inline-block',
-                  border: '1px solid rgba(255, 255, 255, 0.8)',
-                  background: 'transparent',
+                  background: 'var(--color-gold)',
+                  borderColor: 'var(--color-gold)',
                   color: 'white',
-                  padding: '10px 32px',
-                  fontSize: '11px',
+                  padding: '13px 44px',
+                  fontSize: '10px',
                   letterSpacing: '3px',
-                  textTransform: 'uppercase',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  textDecoration: 'none',
+                  animation: 'fadeUp 0.8s 0.45s ease both',
+                  display: 'inline-block',
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'var(--color-gold)';
-                  e.currentTarget.style.borderColor = 'var(--color-gold)';
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.background = 'transparent'
+                  ;(e.currentTarget as HTMLElement).style.color = 'white'
                 }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.8)';
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.background = 'var(--color-gold)'
+                  ;(e.currentTarget as HTMLElement).style.color = 'white'
                 }}
               >
-                Découvrir
+                Découvrir l'expérience
               </a>
+            </div>
+
+            {/* ── Bandeau défilant (marquee) ── */}
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0,
+              zIndex: 3,
+              overflow: 'hidden',
+              background: 'rgba(201,169,110,0.18)',
+              backdropFilter: 'blur(4px)',
+              borderTop: '1px solid rgba(201,169,110,0.3)',
+              padding: '12px 0',
+            }}>
+              <div style={{
+                display: 'flex',
+                gap: '0',
+                animation: 'marquee 22s linear infinite',
+                width: 'max-content',
+              }}>
+                {[...Array(3)].flatMap(() => [
+                  '🚤 Arrivée en bateau',
+                  '🏝️ Plage secrète',
+                  '🌅 Coucher de soleil',
+                  '🍽️ Dîner privé',
+                  '📸 Photographe & drone',
+                  '🎶 Ambiance sur mesure',
+                ]).map((item, i) => (
+                  <span key={i} style={{
+                    fontSize: '10px',
+                    letterSpacing: '3px',
+                    textTransform: 'uppercase',
+                    color: 'rgba(255,255,255,0.85)',
+                    fontFamily: 'var(--font-sans)',
+                    fontWeight: 400,
+                    padding: '0 32px',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </ScrollReveal>
+
+        <style>{`
+          @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-33.333%); }
+          }
+          @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+          }
+        `}</style>
 
         {/* 3 Cartes (Categories) */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2px', marginBottom: '60px' }}>

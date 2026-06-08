@@ -34,7 +34,6 @@ export function Navigation() {
           {[
             { label: 'The Big Day',    href: '#the-big-day' },
             { label: 'The Gathering',  href: '#the-gathering' },
-            { label: 'Coastal',        href: '#coastal-experience' },
             { label: 'Galerie',        href: '#galerie' },
             { label: 'À propos',       href: '#about' },
             { label: 'FAQ',            href: '#faq' },
