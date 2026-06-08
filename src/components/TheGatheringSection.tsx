@@ -165,9 +165,10 @@ export function TheGatheringSection() {
               }}>
                 Notre expérience signature pour sublimer tous vos événements.
               </p>
-              <button
-                onClick={() => setCoastalOpen(true)}
+              <a
+                href="#coastal-experience"
                 style={{
+                  display: 'inline-block',
                   border: '1px solid rgba(255, 255, 255, 0.8)',
                   background: 'transparent',
                   color: 'white',
@@ -177,18 +178,19 @@ export function TheGatheringSection() {
                   textTransform: 'uppercase',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
+                  textDecoration: 'none',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'white';
-                  e.currentTarget.style.color = 'var(--color-dark)';
+                  e.currentTarget.style.background = 'var(--color-gold)';
+                  e.currentTarget.style.borderColor = 'var(--color-gold)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.color = 'white';
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.8)';
                 }}
               >
                 Découvrir
-              </button>
+              </a>
             </div>
           </div>
         </ScrollReveal>
