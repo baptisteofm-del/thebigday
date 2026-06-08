@@ -342,6 +342,17 @@ export default function Home() {
             </div>
           </div>
 
+          {/* ── Vidéo Coastal avec son ── */}
+          <div style={{ marginBottom: '64px', lineHeight: 0 }}>
+            <video
+              controls
+              playsInline
+              style={{ width: '100%', display: 'block', maxHeight: '600px', objectFit: 'cover' }}
+            >
+              <source src="/coastal-video.mp4" type="video/mp4" />
+            </video>
+          </div>
+
           {/* CTA central */}
           <div style={{ textAlign: 'center' }}>
             <button
