@@ -115,7 +115,7 @@ export function TheGatheringSection() {
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
                 fontSize: 'clamp(16px, 2vw, 22px)', fontStyle: 'italic',
                 color: 'rgba(255,255,255,0.78)', marginBottom: '32px', lineHeight: 1.5,
-              }}>Transformez votre événement en une expérience inoubliable.</p>
+              }}>L'expérience signature disponible avec The Big Day et The Gathering.</p>
               <button
                 onClick={() => setCoastalOpen(true)}
                 className="btn"

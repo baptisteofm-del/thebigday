@@ -1,3 +1,6 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import { Navigation } from '@/components/Navigation'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { FAQ } from '@/components/FAQ'
@@ -20,10 +23,8 @@ const galleryImages = [
 
 
 
-export default async function Home() {
-  const supabase = await createClient()
-  const { data: agency } = await supabase.from('agencies').select('*').eq('slug', 'thebigday').single()
-  const { data: testimonials } = await supabase.from('testimonials').select('*').eq('published', true).limit(3)
+export default function Home() {
+  const [coastalModalOpen, setCoastalModalOpen] = useState(false)
 
   const defaultTestimonials = [
     { id: '1', author_name: 'Marie & Antoine', author_role: 'Mariés — Été 2024', content: 'The Big Day a dépassé tous nos espoirs. Chaque détail était d\'une précision absolue. Notre mariage en Corse restera le plus beau jour de notre vie.', rating: 5 },
@@ -31,7 +32,7 @@ export default async function Home() {
     { id: '3', author_name: 'Juliette & Marc', author_role: 'Mariés — Automne 2023', content: 'Professionnalisme, créativité, passion. Trois mots qui résument parfaitement notre expérience avec The Big Day Corsica.', rating: 5 },
   ]
 
-  const reviews = (testimonials && testimonials.length > 0) ? testimonials : defaultTestimonials
+  const reviews = defaultTestimonials
 
   return (
     <>
@@ -96,6 +97,22 @@ export default async function Home() {
             <a href="#the-gathering" className="btn btn-outline">
               The Gathering
             </a>
+          </div>
+
+          {/* Signature Coastal sous les CTAs */}
+          <div style={{ marginTop: '32px', display: 'flex', alignItems: 'center', gap: '16px', justifyContent: 'center' }}>
+            <div style={{ width: '40px', height: '1px', background: 'rgba(201,169,110,0.4)' }} />
+            <a href="#coastal-crosssell" style={{
+              fontSize: '9px', letterSpacing: '5px', textTransform: 'uppercase',
+              color: 'rgba(201,169,110,0.75)', fontWeight: 400,
+              transition: 'color 0.3s', textDecoration: 'none',
+            }}
+            onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'rgba(201,169,110,1)'}
+            onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(201,169,110,0.75)'}
+            >
+              ✦ Coastal Experience — L'expérience signature
+            </a>
+            <div style={{ width: '40px', height: '1px', background: 'rgba(201,169,110,0.4)' }} />
           </div>
         </div>
 
@@ -212,12 +229,275 @@ export default async function Home() {
               </div>
 
               <a href="#contact" className="btn btn-dark">Planifier mon mariage</a>
+
+              {/* Coastal Experience teaser */}
+              <div style={{
+                marginTop: '32px',
+                padding: '20px 24px',
+                background: 'var(--color-dark)',
+                borderLeft: '2px solid var(--color-gold)',
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                cursor: 'pointer',
+              }} onClick={() => document.getElementById('coastal-crosssell')?.scrollIntoView({ behavior: 'smooth' })}>
+                <div>
+                  <p style={{ fontSize: '8px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '4px' }}>
+                    ✦ EXPÉRIENCE SIGNATURE
+                  </p>
+                  <p style={{ fontSize: '14px', color: 'white', fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: 'italic', fontWeight: 300 }}>
+                    Sublimez votre mariage avec Coastal Experience
+                  </p>
+                </div>
+                <span style={{ color: 'var(--color-gold)', fontSize: '20px' }}>→</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <TheGatheringSection />
+
+      {/* ===================== COASTAL EXPERIENCE CROSS-SELL ===================== */}
+      <section id="coastal-crosssell" style={{ background: '#0a0805', padding: '100px 0' }}>
+        <div className="container">
+          {/* Header */}
+          <div style={{ textAlign: 'center', marginBottom: '72px' }}>
+            <p style={{ fontSize: '9px', letterSpacing: '7px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '20px', fontWeight: 400 }}>
+              ✦ Expérience Signature
+            </p>
+            <h2 style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontSize: 'clamp(36px, 5vw, 64px)',
+              fontWeight: 300, fontStyle: 'italic',
+              letterSpacing: '4px', color: 'white',
+              marginBottom: '16px',
+            }}>Coastal Experience</h2>
+            <div style={{ width: '40px', height: '1px', background: 'var(--color-gold)', margin: '0 auto 24px' }} />
+            <p style={{
+              fontSize: '16px', color: 'rgba(255,255,255,0.55)',
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontStyle: 'italic', maxWidth: '560px', margin: '0 auto',
+              lineHeight: 1.7,
+            }}>
+              L'upgrade premium disponible sur chacune de nos offres.<br />
+              Une traversée privée, une plage secrète, un coucher de soleil — inoubliable.
+            </p>
+          </div>
+
+          {/* Deux colonnes */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px', marginBottom: '64px' }}>
+            {/* The Big Day + Coastal */}
+            <div style={{ position: 'relative', overflow: 'hidden', height: '480px', cursor: 'pointer' }}
+              onClick={() => document.getElementById('the-big-day')?.scrollIntoView({ behavior: 'smooth' })}>
+              <img
+                src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80&auto=format"
+                alt="The Big Day + Coastal"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.4)', transition: 'all 0.6s ease' }}
+                onMouseEnter={e => (e.currentTarget as HTMLImageElement).style.filter = 'brightness(0.55)'}
+                onMouseLeave={e => (e.currentTarget as HTMLImageElement).style.filter = 'brightness(0.4)'}
+              />
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '48px 44px' }}>
+                <p style={{ fontSize: '9px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '12px' }}>Mariage</p>
+                <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '32px', fontStyle: 'italic', fontWeight: 300, color: 'white', marginBottom: '6px', letterSpacing: '2px' }}>
+                  The Big Day
+                </h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
+                  <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', letterSpacing: '1px' }}>+</span>
+                  <span style={{ fontSize: '13px', color: 'var(--color-gold)', letterSpacing: '3px', textTransform: 'uppercase', fontFamily: 'var(--font-sans)' }}>Coastal Experience</span>
+                </div>
+                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, fontWeight: 300, marginBottom: '28px', maxWidth: '340px' }}>
+                  Terminez votre plus beau jour par une traversée privée et un dîner face à la mer.
+                </p>
+                <span style={{ fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--color-gold)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  Découvrir <span style={{ fontSize: '16px' }}>→</span>
+                </span>
+              </div>
+            </div>
+
+            {/* The Gathering + Coastal */}
+            <div style={{ position: 'relative', overflow: 'hidden', height: '480px', cursor: 'pointer' }}
+              onClick={() => document.getElementById('the-gathering')?.scrollIntoView({ behavior: 'smooth' })}>
+              <img
+                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80&auto=format"
+                alt="The Gathering + Coastal"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.4)', transition: 'all 0.6s ease' }}
+                onMouseEnter={e => (e.currentTarget as HTMLImageElement).style.filter = 'brightness(0.55)'}
+                onMouseLeave={e => (e.currentTarget as HTMLImageElement).style.filter = 'brightness(0.4)'}
+              />
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '48px 44px' }}>
+                <p style={{ fontSize: '9px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '12px' }}>Événements privés</p>
+                <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '32px', fontStyle: 'italic', fontWeight: 300, color: 'white', marginBottom: '6px', letterSpacing: '2px' }}>
+                  The Gathering
+                </h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
+                  <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', letterSpacing: '1px' }}>+</span>
+                  <span style={{ fontSize: '13px', color: 'var(--color-gold)', letterSpacing: '3px', textTransform: 'uppercase', fontFamily: 'var(--font-sans)' }}>Coastal Experience</span>
+                </div>
+                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, fontWeight: 300, marginBottom: '28px', maxWidth: '340px' }}>
+                  Concluez votre célébration par une escapade exclusive sur une crique préservée.
+                </p>
+                <span style={{ fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--color-gold)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  Découvrir <span style={{ fontSize: '16px' }}>→</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA central */}
+          <div style={{ textAlign: 'center' }}>
+            <button
+              onClick={() => setCoastalModalOpen(true)}
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(201,169,110,0.6)',
+                color: 'var(--color-gold)',
+                padding: '14px 52px',
+                fontSize: '10px',
+                letterSpacing: '4px',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+                fontFamily: 'var(--font-sans)',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.background = 'var(--color-gold)'
+                ;(e.currentTarget as HTMLElement).style.color = 'white'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.background = 'transparent'
+                ;(e.currentTarget as HTMLElement).style.color = 'var(--color-gold)'
+              }}
+            >
+              ✦ Découvrir Coastal Experience
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Modal Coastal Experience */}
+      {coastalModalOpen && (
+        <div
+          style={{
+            position: 'fixed', inset: 0, zIndex: 1000,
+            background: 'rgba(10,8,5,0.85)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '24px',
+            backdropFilter: 'blur(6px)',
+            animation: 'fadeIn 0.35s ease',
+          }}
+          onClick={() => setCoastalModalOpen(false)}
+        >
+          <div
+            style={{
+              background: 'var(--color-ivory)',
+              maxWidth: '1000px', width: '100%',
+              maxHeight: '90vh', overflowY: 'auto',
+              position: 'relative',
+              animation: 'slideUp 0.4s ease',
+            }}
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Bouton fermer */}
+            <button
+              onClick={() => setCoastalModalOpen(false)}
+              style={{
+                position: 'absolute', top: '20px', right: '20px', zIndex: 10,
+                background: 'transparent', border: '1px solid rgba(42,33,24,0.2)',
+                width: '40px', height: '40px', cursor: 'pointer',
+                fontSize: '18px', color: 'var(--color-dark)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = 'var(--color-dark)'}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}
+            >
+              <span style={{ transition: 'color 0.2s', color: 'inherit' }}>✕</span>
+            </button>
+
+            {/* En-tête */}
+            <div style={{
+              padding: '52px 48px 0',
+              borderBottom: '1px solid rgba(201,169,110,0.2)',
+              paddingBottom: '32px',
+            }}>
+              <p style={{ fontSize: '9px', letterSpacing: '6px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '12px', fontWeight: 400 }}>
+                Expérience Signature
+              </p>
+              <h2 style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, fontStyle: 'italic',
+                letterSpacing: '3px', marginBottom: '12px',
+              }}>Coastal Experience</h2>
+              <p style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontStyle: 'italic', fontSize: '18px',
+                color: 'rgba(42,33,24,0.5)', fontWeight: 300,
+              }}>L'expérience signature en Corse</p>
+            </div>
+
+            {/* Corps — 2 colonnes */}
+            <div style={{
+              display: 'grid', gridTemplateColumns: '1fr 1fr',
+              gap: '0', minHeight: '400px',
+            }}>
+              {/* Gauche — grille photos */}
+              <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: '2px' }}>
+                <img
+                  src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80&auto=format"
+                  alt="Plage privée Corse"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
+                  <img
+                    src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80&auto=format"
+                    alt="Traversée en bateau"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format"
+                    alt="Dîner privé"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+              </div>
+
+              {/* Droite — texte */}
+              <div style={{
+                padding: '40px 44px',
+                display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+                overflowY: 'auto',
+              }}>
+                <div>
+                  <div style={{ width: '32px', height: '1px', background: 'var(--color-gold)', marginBottom: '28px' }} />
+                  {[
+                    "Offrez une dimension supplémentaire à votre événement grâce à Coastal Experience, une expérience exclusive imaginée pour sublimer vos plus beaux moments.",
+                    "Au départ de Saint-Florent, embarquez pour une traversée privée le long des côtes sauvages corses à la découverte de criques préservées, accessibles uniquement par la mer.",
+                    "À votre arrivée, un décor d'exception vous attend : dîner privé sur la plage, coucher de soleil sur la mer, décoration raffinée et ambiance entièrement pensée selon vos envies.",
+                    "Photographe professionnel, prises de vue par drone, séance photo à la golden hour, musique live, guitare, saxophone, playlists personnalisées ou simplement le silence de la mer : chaque détail est soigneusement orchestré pour créer un moment unique.",
+                    "D'une élégance minimaliste à une mise en scène plus spectaculaire, Coastal Experience est bien plus qu'une simple activité : c'est une option premium conçue pour transformer votre événement en une expérience inoubliable au cœur des plus beaux paysages de Corse.",
+                  ].map((txt, i) => (
+                    <p key={i} style={{
+                      fontSize: '14px', color: 'rgba(42,33,24,0.72)',
+                      lineHeight: 1.95, fontWeight: 300, marginBottom: '16px',
+                    }}>{txt}</p>
+                  ))}
+                </div>
+                <div style={{ paddingTop: '28px' }}>
+                  <a
+                    href="#contact"
+                    className="btn btn-dark"
+                    onClick={() => setCoastalModalOpen(false)}
+                  >Planifier mon expérience</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+        @keyframes slideUp { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
+      `}</style>
 
       {/* ===================== GALERIE ===================== */}
       <section id="galerie" className="section" style={{ background: 'var(--color-dark)' }}>

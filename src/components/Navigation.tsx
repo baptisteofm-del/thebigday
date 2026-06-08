@@ -51,6 +51,32 @@ export function Navigation() {
               </a>
             </li>
           ))}
+          {/* Coastal Experience link (special style) */}
+          <li className="nav-desktop-item" style={{ display: 'none' }}>
+            <a href="#coastal-crosssell" style={{
+              fontSize: '11px',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 500,
+              color: 'var(--color-gold)',
+              border: '1px solid rgba(201,169,110,0.4)',
+              padding: '6px 14px',
+              transition: 'all 0.3s',
+              display: 'inline-flex',
+              alignItems: 'center',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.background = 'rgba(201,169,110,0.1)'
+              ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(201,169,110,0.8)'
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.background = 'transparent'
+              ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(201,169,110,0.4)'
+            }}
+            >
+              ✦ Coastal
+            </a>
+          </li>
           <li>
             <a href="#contact" className="btn btn-gold" style={{ padding: '10px 28px', fontSize: '10px' }}>
               Contact
