@@ -87,115 +87,41 @@ export function TheGatheringSection() {
         <ScrollReveal>
           <div style={{
             marginBottom: '60px',
-            position: 'relative',
-            height: '520px',
+            background: 'var(--color-dark)',
             overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-          }}
-          onClick={() => window.location.href = '#contact'}
-          >
-            {/* Vidéo — zoom lent au hover */}
-            <video
-              autoPlay muted loop playsInline
-              style={{
-                position: 'absolute', inset: 0,
-                width: '100%', height: '100%',
-                objectFit: 'cover',
-                transform: 'scale(1.06)',
-                transition: 'transform 8s ease',
-              }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = 'scale(1.12)'}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = 'scale(1.06)'}
-            >
-              <source src="https://videos.pexels.com/video-files/4782135/4782135-uhd_2560_1440_30fps.mp4" type="video/mp4" />
-            </video>
-
-            {/* Overlay gradient */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(to bottom, rgba(10,8,5,0.25) 0%, rgba(10,8,5,0.55) 60%, rgba(10,8,5,0.75) 100%)',
-              zIndex: 1,
-            }} />
-
-            {/* Contenu principal */}
-            <div style={{
-              position: 'relative', zIndex: 2,
-              textAlign: 'center', color: 'white',
-              padding: '0 24px',
-            }}>
-              {/* Eyebrow animé */}
+          }}>
+            {/* ── 1. Titre ── */}
+            <div style={{ padding: '52px 24px 40px', textAlign: 'center' }}>
               <p style={{
-                fontSize: '9px', letterSpacing: '7px',
-                textTransform: 'uppercase',
-                color: 'var(--color-gold)',
-                marginBottom: '18px', fontWeight: 400,
-                animation: 'fadeUp 0.8s ease both',
-              }}>
-                Expérience Signature
-              </p>
-
-              {/* Titre */}
+                fontSize: '9px', letterSpacing: '7px', textTransform: 'uppercase',
+                color: 'var(--color-gold)', marginBottom: '18px', fontWeight: 400,
+              }}>Expérience Signature</p>
               <h2 style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontSize: 'clamp(36px, 5.5vw, 72px)',
-                fontWeight: 300,
-                fontStyle: 'italic',
-                letterSpacing: '6px',
-                textTransform: 'uppercase',
-                lineHeight: 1.05,
-                marginBottom: '0',
-                animation: 'fadeUp 0.8s 0.1s ease both',
-              }}>
-                Signature :
-              </h2>
+                fontSize: 'clamp(32px, 5vw, 64px)',
+                fontWeight: 300, fontStyle: 'italic',
+                letterSpacing: '6px', textTransform: 'uppercase',
+                lineHeight: 1.05, color: 'white', marginBottom: 0,
+              }}>Signature :</h2>
               <h2 style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontSize: 'clamp(36px, 5.5vw, 72px)',
-                fontWeight: 700,
-                fontStyle: 'italic',
-                letterSpacing: '6px',
-                textTransform: 'uppercase',
-                lineHeight: 1.05,
-                marginBottom: '24px',
-                animation: 'fadeUp 0.8s 0.2s ease both',
-              }}>
-                Coastal Experience
-              </h2>
-
-              {/* Divider */}
-              <div style={{ width: '40px', height: '1px', background: 'var(--color-gold)', margin: '0 auto 24px', animation: 'fadeUp 0.8s 0.3s ease both' }} />
-
-              {/* Sous-titre */}
+                fontSize: 'clamp(32px, 5vw, 64px)',
+                fontWeight: 700, fontStyle: 'italic',
+                letterSpacing: '6px', textTransform: 'uppercase',
+                lineHeight: 1.05, color: 'white', marginBottom: '20px',
+              }}>Coastal Experience</h2>
+              <div style={{ width: '40px', height: '1px', background: 'var(--color-gold)', margin: '0 auto 20px' }} />
               <p style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontSize: 'clamp(16px, 2vw, 22px)',
-                fontStyle: 'italic',
-                color: 'rgba(255,255,255,0.82)',
-                marginBottom: '36px',
-                lineHeight: 1.5,
-                animation: 'fadeUp 0.8s 0.35s ease both',
-              }}>
-                Transformez votre événement en une expérience inoubliable.
-              </p>
-
-              {/* CTA */}
-              <a
-                href="#contact"
-                onClick={e => e.stopPropagation()}
+                fontSize: 'clamp(16px, 2vw, 22px)', fontStyle: 'italic',
+                color: 'rgba(255,255,255,0.78)', marginBottom: '32px', lineHeight: 1.5,
+              }}>Transformez votre événement en une expérience inoubliable.</p>
+              <button
+                onClick={() => setCoastalOpen(true)}
                 className="btn"
                 style={{
-                  background: 'var(--color-gold)',
-                  borderColor: 'var(--color-gold)',
-                  color: 'white',
-                  padding: '13px 44px',
-                  fontSize: '10px',
-                  letterSpacing: '3px',
-                  animation: 'fadeUp 0.8s 0.45s ease both',
-                  display: 'inline-block',
+                  background: 'var(--color-gold)', borderColor: 'var(--color-gold)',
+                  color: 'white', padding: '13px 44px', fontSize: '10px', letterSpacing: '3px',
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.background = 'transparent'
@@ -205,46 +131,40 @@ export function TheGatheringSection() {
                   (e.currentTarget as HTMLElement).style.background = 'var(--color-gold)'
                   ;(e.currentTarget as HTMLElement).style.color = 'white'
                 }}
-              >
-                Découvrir l'expérience
-              </a>
+              >Découvrir l'expérience</button>
             </div>
 
-            {/* ── Bandeau défilant (marquee) ── */}
+            {/* ── 2. Vidéo avec son ── */}
+            <div style={{ lineHeight: 0 }}>
+              <video
+                controls
+                playsInline
+                style={{ width: '100%', display: 'block', maxHeight: '560px', objectFit: 'cover' }}
+              >
+                <source src="/coastal-video.mp4" type="video/mp4" />
+              </video>
+            </div>
+
+            {/* ── 3. Marquee défilant ── */}
             <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0,
-              zIndex: 3,
               overflow: 'hidden',
-              background: 'rgba(201,169,110,0.18)',
-              backdropFilter: 'blur(4px)',
-              borderTop: '1px solid rgba(201,169,110,0.3)',
-              padding: '12px 0',
+              background: 'rgba(201,169,110,0.15)',
+              borderTop: '1px solid rgba(201,169,110,0.25)',
+              padding: '14px 0',
             }}>
               <div style={{
-                display: 'flex',
-                gap: '0',
-                animation: 'marquee 22s linear infinite',
-                width: 'max-content',
+                display: 'flex', animation: 'marquee 28s linear infinite', width: 'max-content',
               }}>
-                {[...Array(3)].flatMap(() => [
-                  '🚤 Arrivée en bateau',
-                  '🏝️ Plage secrète',
-                  '🌅 Coucher de soleil',
-                  '🍽️ Dîner privé',
-                  '📸 Photographe & drone',
-                  '🎶 Ambiance sur mesure',
+                {[...Array(4)].flatMap(() => [
+                  'Plage secrète', 'Arrivée en bateau', 'Coucher de soleil',
+                  'Dîner privé', 'Photographe & drone', 'Ambiance sur mesure', 'Saint-Florent',
                 ]).map((item, i) => (
                   <span key={i} style={{
-                    fontSize: '10px',
-                    letterSpacing: '3px',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.85)',
-                    fontFamily: 'var(--font-sans)',
-                    fontWeight: 400,
-                    padding: '0 32px',
-                    whiteSpace: 'nowrap',
+                    fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase',
+                    color: 'rgba(255,255,255,0.7)', fontFamily: 'var(--font-sans)',
+                    fontWeight: 400, padding: '0 28px', whiteSpace: 'nowrap',
                   }}>
-                    {item}
+                    {item} <span style={{ color: 'var(--color-gold)', margin: '0 4px' }}>·</span>
                   </span>
                 ))}
               </div>
@@ -253,14 +173,8 @@ export function TheGatheringSection() {
         </ScrollReveal>
 
         <style>{`
-          @keyframes marquee {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-33.333%); }
-          }
-          @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
-          }
+          @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-25%); } }
+          @keyframes fadeUp  { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
         `}</style>
 
         {/* 3 Cartes (Categories) */}
@@ -647,55 +561,131 @@ export function TheGatheringSection() {
           </ScrollReveal>
         )}
 
-        {/* The Coastal Experience Panel (shown when coastal is open) */}
+        {/* ── Modal Coastal Experience ── */}
         {coastalOpen && (
-          <ScrollReveal>
-            <div style={{
-              background: 'var(--color-ivory)',
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '0',
-              marginBottom: '60px',
-              borderLeft: '3px solid var(--color-gold)',
-              overflow: 'hidden',
-              animation: 'fadeDown 0.4s ease',
-            }}>
-              {/* Image */}
-              <div style={{ minHeight: '480px', overflow: 'hidden' }}>
-                <img
-                  src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80&auto=format"
-                  alt="The Coastal Experience"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
+          <div
+            style={{
+              position: 'fixed', inset: 0, zIndex: 1000,
+              background: 'rgba(10,8,5,0.85)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              padding: '24px',
+              backdropFilter: 'blur(6px)',
+              animation: 'fadeIn 0.35s ease',
+            }}
+            onClick={() => setCoastalOpen(false)}
+          >
+            <div
+              style={{
+                background: 'var(--color-ivory)',
+                maxWidth: '1000px', width: '100%',
+                maxHeight: '90vh', overflowY: 'auto',
+                position: 'relative',
+                animation: 'slideUp 0.4s ease',
+              }}
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Bouton fermer */}
+              <button
+                onClick={() => setCoastalOpen(false)}
+                style={{
+                  position: 'absolute', top: '20px', right: '20px', zIndex: 10,
+                  background: 'transparent', border: '1px solid rgba(42,33,24,0.2)',
+                  width: '40px', height: '40px', cursor: 'pointer',
+                  fontSize: '18px', color: 'var(--color-dark)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = 'var(--color-dark)'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}
+              >
+                <span style={{ transition: 'color 0.2s' }}>✕</span>
+              </button>
+
+              {/* En-tête */}
+              <div style={{
+                padding: '52px 48px 0',
+                borderBottom: '1px solid rgba(201,169,110,0.2)',
+                paddingBottom: '32px',
+              }}>
+                <p style={{ fontSize: '9px', letterSpacing: '6px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '12px', fontWeight: 400 }}>
+                  Expérience Signature
+                </p>
+                <h2 style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 300, fontStyle: 'italic',
+                  letterSpacing: '3px', marginBottom: '12px',
+                }}>Coastal Experience</h2>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontStyle: 'italic', fontSize: '18px',
+                  color: 'rgba(42,33,24,0.5)', fontWeight: 300,
+                }}>L'expérience signature en Corse</p>
               </div>
 
-              {/* Text */}
-              <div style={{ padding: '56px 48px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <p style={{ fontSize: '9px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '20px', fontWeight: 400 }}>
-                  EXPÉRIENCE SIGNATURE
-                </p>
-                <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '40px', fontStyle: 'italic', fontWeight: 300, letterSpacing: '2px', marginBottom: '24px' }}>
-                  The Coastal<br />Experience
-                </h3>
-                <div style={{ width: '32px', height: '1px', background: 'var(--color-gold)', marginBottom: '24px' }} />
-                <p style={{ fontSize: '14px', color: 'rgba(42,33,24,0.7)', lineHeight: 1.9, fontWeight: 300, marginBottom: '16px' }}>
-                  Departing from Saint-Florent, guests embark on a private boat journey to a secluded cove accessible only by sea.
-                </p>
-                <p style={{ fontSize: '14px', color: 'rgba(42,33,24,0.7)', lineHeight: 1.9, fontWeight: 300, marginBottom: '16px' }}>
-                  Upon arrival, an elegant setting awaits overlooking the Mediterranean, featuring bespoke décor, refined dining and the possibility of adding professional photography or drone cinematography.
-                </p>
-                <p style={{ fontSize: '14px', color: 'rgba(42,33,24,0.7)', lineHeight: 1.9, fontWeight: 300, marginBottom: '32px' }}>
-                  Designed for proposals, honeymoons, family celebrations and unforgettable occasions, The Coastal Experience offers a unique way to discover Corsica through an exclusive and timeless setting.
-                </p>
+              {/* Corps — 2 colonnes */}
+              <div style={{
+                display: 'grid', gridTemplateColumns: '1fr 1fr',
+                gap: '0', minHeight: '400px',
+              }}>
+                {/* Gauche — grille photos */}
+                <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: '2px' }}>
+                  <img
+                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80&auto=format"
+                    alt="Plage privée Corse"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
+                    <img
+                      src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80&auto=format"
+                      alt="Traversée en bateau"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                    <img
+                      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format"
+                      alt="Dîner privé"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                  </div>
+                </div>
 
-                <a href="#contact" className="btn btn-dark" onClick={(e) => { e.stopPropagation(); setCoastalOpen(false) }}>
-                  Planifier mon expérience
-                </a>
+                {/* Droite — texte */}
+                <div style={{
+                  padding: '40px 44px',
+                  display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+                  overflowY: 'auto',
+                }}>
+                  <div>
+                    <div style={{ width: '32px', height: '1px', background: 'var(--color-gold)', marginBottom: '28px' }} />
+                    {[
+                      "Offrez une dimension supplémentaire à votre événement grâce à Coastal Experience, une expérience exclusive imaginée pour sublimer vos plus beaux moments.",
+                      "Au départ de Saint-Florent, embarquez pour une traversée privée le long des côtes sauvages corses à la découverte de criques préservées, accessibles uniquement par la mer.",
+                      "À votre arrivée, un décor d'exception vous attend : dîner privé sur la plage, coucher de soleil sur la mer, décoration raffinée et ambiance entièrement pensée selon vos envies.",
+                      "Photographe professionnel, prises de vue par drone, séance photo à la golden hour, musique live, guitare, saxophone, playlists personnalisées ou simplement le silence de la mer : chaque détail est soigneusement orchestré pour créer un moment unique.",
+                      "D'une élégance minimaliste à une mise en scène plus spectaculaire, Coastal Experience est bien plus qu'une simple activité : c'est une option premium conçue pour transformer votre événement en une expérience inoubliable au cœur des plus beaux paysages de Corse.",
+                    ].map((txt, i) => (
+                      <p key={i} style={{
+                        fontSize: '14px', color: 'rgba(42,33,24,0.72)',
+                        lineHeight: 1.95, fontWeight: 300, marginBottom: '16px',
+                      }}>{txt}</p>
+                    ))}
+                  </div>
+                  <div style={{ paddingTop: '28px' }}>
+                    <a
+                      href="#contact"
+                      className="btn btn-dark"
+                      onClick={() => setCoastalOpen(false)}
+                    >Planifier mon expérience</a>
+                  </div>
+                </div>
               </div>
-              <style>{`@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}`}</style>
             </div>
-          </ScrollReveal>
+          </div>
         )}
+
+        <style>{`
+          @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+          @keyframes slideUp { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
+        `}</style>
 
       </div>
     </section>
