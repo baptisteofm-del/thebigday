@@ -8,17 +8,20 @@ interface LogoBrandProps {
 export function LogoBrand({ light = false, size = 'sm' }: LogoBrandProps) {
   if (size === 'lg') {
     return (
-      <Image
-        src="/logo.png"
-        alt="The Big Day"
-        width={380}
-        height={415}
-        priority
-        style={{
-          width: 'clamp(180px, 25vw, 380px)',
-          height: 'auto',
-        }}
-      />
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+        <Image
+          src="/logo.png"
+          alt="The Big Day"
+          width={380}
+          height={415}
+          priority
+          style={{
+            width: 'clamp(180px, 25vw, 380px)',
+            height: 'auto',
+            display: 'block',
+          }}
+        />
+      </div>
     )
   }
 
