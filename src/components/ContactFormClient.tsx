@@ -15,11 +15,12 @@ export default function ContactFormClient() {
     e.preventDefault()
     setLoading(true)
     try {
-      const { createClient } = await import('@/lib/supabase/client')
-      const supabase = createClient()
-      const { data: agency } = await supabase.from('agencies').select('id').eq('slug', 'thebigday').single()
-      if (!agency) throw new Error()
-      await supabase.from('bookings').insert({ agency_id: agency.id, name: form.name, email: form.email, event_date: form.date || null, message: form.message })
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!response.ok) throw new Error()
       setSent(true)
     } catch {
       alert('Une erreur est survenue. Veuillez réessayer.')
