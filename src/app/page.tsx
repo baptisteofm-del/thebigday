@@ -9,16 +9,16 @@ import { TheGatheringSection } from '@/components/TheGatheringSection'
 import { createClient } from '@/lib/supabase/server'
 
 // Photos Unsplash — Corse & mariage (libres de droits)
-const HERO_IMAGE = 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=1920&q=85&auto=format'
-const ABOUT_IMAGE = 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&q=80&auto=format'
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=85&auto=format'
+const ABOUT_IMAGE = 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=900&q=80&auto=format'
 
 const galleryImages = [
-  { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80&auto=format', alt: 'Mariage en Corse' },
-  { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80&auto=format', alt: 'Table de réception' },
-  { src: 'https://images.unsplash.com/photo-1529636798458-92182e662485?w=600&q=80&auto=format', alt: 'Décoration florale' },
-  { src: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&q=80&auto=format', alt: 'Cérémonie' },
-  { src: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=600&q=80&auto=format', alt: 'Ambiance dîner' },
-  { src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80&auto=format', alt: 'Réception' },
+  { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80&auto=format', alt: 'Mariage en plein air' },
+  { src: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=80&auto=format', alt: 'Cérémonie bougies' },
+  { src: 'https://images.unsplash.com/photo-1478146059778-26b7c7b2e3ca?w=600&q=80&auto=format', alt: 'Table fleurs blanches' },
+  { src: 'https://images.unsplash.com/photo-1546074177-ffdda98d214f?w=1200&q=80&auto=format', alt: 'Coucher de soleil méditerranée' },
+  { src: 'https://images.unsplash.com/photo-1439539698758-ba2680ecadb9?w=600&q=80&auto=format', alt: 'Décoration bougies' },
+  { src: 'https://images.unsplash.com/photo-1529636798458-92182e662485?w=600&q=80&auto=format', alt: 'Fleurs décoration' },
 ]
 
 
@@ -182,7 +182,7 @@ export default function Home() {
                   zIndex: 0,
                 }} />
                 <img
-                  src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80&auto=format"
+                  src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=900&q=80&auto=format"
                   alt="Mariage en Corse"
                   style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', position: 'relative', zIndex: 1 }}
                 />
@@ -289,7 +289,7 @@ export default function Home() {
             <div style={{ position: 'relative', overflow: 'hidden', height: '480px', cursor: 'pointer' }}
               onClick={() => document.getElementById('the-big-day')?.scrollIntoView({ behavior: 'smooth' })}>
               <img
-                src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80&auto=format"
+                src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=900&q=80&auto=format"
                 alt="The Big Day + Coastal"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.4)', transition: 'all 0.6s ease' }}
                 onMouseEnter={e => (e.currentTarget as HTMLImageElement).style.filter = 'brightness(0.55)'}

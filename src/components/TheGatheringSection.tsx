@@ -41,7 +41,7 @@ const categories = [
     id: 'events',
     label: 'Events',
     subtitle: 'Célébrations & rassemblements',
-    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=900&q=80&auto=format',
+    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80&auto=format',
     intro: 'Des célébrations familiales intimistes aux grands événements d\'entreprise, nous orchestrons des moments qui marquent les esprits. Chaque détail est pensé avec la même passion et la même précision qui définissent The Gathering.',
     eventSubcategories: [
       { title: 'Anniversaires', desc: 'Célébrez les grands moments de la vie avec un raffinement absolu' },
