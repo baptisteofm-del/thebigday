@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     // Send email via Resend
     try {
       await resend.emails.send({
-        from: 'TheBigDay <onboarding@resend.dev>',
+        from: 'TheBigDay <contact@thebigday.fr>',
         to: 'contact@thebigday.fr',
         replyTo: email,
         subject: `Nouvelle demande de contact — ${name}`,
