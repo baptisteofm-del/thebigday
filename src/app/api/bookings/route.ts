@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+import { createClient as createServerClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -17,17 +17,28 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Save to Supabase
-    const supabase = await createClient()
-    const { data: agency } = await supabase
+    // Save to Supabase — utiliser SERVICE_ROLE_KEY pour accès serveur
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+      process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false,
+        },
+      }
+    )
+
+    const { data: agency, error: agencyError } = await supabase
       .from('agencies')
       .select('id')
       .eq('slug', 'thebigday')
       .single()
 
-    if (!agency) {
+    if (agencyError || !agency) {
+      console.error('Agency lookup error:', agencyError)
       return NextResponse.json(
-        { error: 'Agency not found' },
+        { error: 'Agency not found', details: agencyError?.message },
         { status: 404 }
       )
     }
