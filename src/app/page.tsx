@@ -10,7 +10,7 @@ import { createClient } from '@/lib/supabase/server'
 
 // Photos Unsplash — Corse & mariage (libres de droits)
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=1920&q=85&auto=format'
-const ABOUT_IMAGE = 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&q=80&auto=format'
+const ABOUT_IMAGE = '/photos/about.jpg'
 
 const galleryImages = [
   { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80&auto=format', alt: 'Mariage en Corse' },
@@ -182,7 +182,7 @@ export default function Home() {
                   zIndex: 0,
                 }} />
                 <img
-                  src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80&auto=format"
+                  src="/photos/bigday.jpg"
                   alt="Mariage en Corse"
                   style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', position: 'relative', zIndex: 1 }}
                 />
@@ -289,7 +289,7 @@ export default function Home() {
             <div style={{ position: 'relative', overflow: 'hidden', height: '480px', cursor: 'pointer' }}
               onClick={() => document.getElementById('the-big-day')?.scrollIntoView({ behavior: 'smooth' })}>
               <img
-                src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80&auto=format"
+                src="/photos/bigday.jpg"
                 alt="The Big Day + Coastal"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.4)', transition: 'all 0.6s ease' }}
                 onMouseEnter={e => (e.currentTarget as HTMLImageElement).style.filter = 'brightness(0.55)'}

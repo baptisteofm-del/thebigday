@@ -8,8 +8,8 @@ const categories = [
     id: 'proposals',
     label: 'Proposals',
     subtitle: 'Expériences de demande en mariage personnalisées',
-    image: 'https://images.unsplash.com/photo-1518049362265-d5b2a6467637?w=900&q=80&auto=format',
-    panelImage: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80&auto=format',
+    image: '/photos/proposal.jpg',
+    panelImage: '/photos/proposal.jpg',
     intro: 'Chaque demande en mariage mérite un cadre aussi extraordinaire que le moment lui-même. Nous concevons chaque expérience avec une attention méticuleuse aux détails, pour que votre question reste gravée à jamais dans les mémoires.',
     services: [
       'Organisation complète',
@@ -25,8 +25,8 @@ const categories = [
     id: 'honeymoon',
     label: 'Honeymoon',
     subtitle: 'Échappées romantiques',
-    image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=900&q=80&auto=format',
-    panelImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80&auto=format',
+    image: '/photos/honeymoon.jpg',
+    panelImage: '/photos/honeymoon.jpg',
     intro: 'Votre lune de miel est le premier chapitre de votre vie commune. Nous créons des expériences intimes et romantiques, pensées sur mesure — des dîners privés face à la mer aux découvertes exclusives des plus beaux paysages de Corse.',
     services: [
       'Moments romantiques',
@@ -41,7 +41,7 @@ const categories = [
     id: 'events',
     label: 'Events',
     subtitle: 'Célébrations & rassemblements',
-    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=900&q=80&auto=format',
+    image: '/photos/events.jpg',
     intro: 'Des célébrations familiales intimistes aux grands événements d\'entreprise, nous orchestrons des moments qui marquent les esprits. Chaque détail est pensé avec la même passion et la même précision qui définissent The Gathering.',
     eventSubcategories: [
       { title: 'Anniversaires', desc: 'Célébrez les grands moments de la vie avec un raffinement absolu' },
@@ -538,18 +538,18 @@ export function TheGatheringSection() {
                 {/* Gauche — grille photos */}
                 <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: '2px' }}>
                   <img
-                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80&auto=format"
+                    src="/photos/coastal.jpg"
                     alt="Plage privée Corse"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
                     <img
-                      src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80&auto=format"
+                      src="/photos/events.jpg"
                       alt="Traversée en bateau"
                       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                     />
                     <img
-                      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format"
+                      src="/photos/honeymoon.jpg"
                       alt="Dîner privé"
                       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                     />
