@@ -25,28 +25,16 @@ export default function ContactPage() {
     setLoading(true)
 
     try {
-      const { createClient } = await import('@/lib/supabase/client')
-      const supabase = createClient()
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
 
-      const { data: agency } = await supabase
-        .from('agencies')
-        .select('id')
-        .eq('slug', 'thebigday')
-        .single()
-
-      if (!agency) throw new Error('Agency not found')
-
-      const { error } = await supabase
-        .from('bookings')
-        .insert({
-          agency_id: agency.id,
-          name: formData.name,
-          email: formData.email,
-          event_date: formData.date || null,
-          message: formData.message,
-        })
-
-      if (error) throw error
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.error || 'Failed to submit booking')
+      }
 
       toast.success('Merci ! Nous vous répondrons très bientôt.')
       setFormData({ name: '', email: '', eventType: '', date: '', message: '' })
